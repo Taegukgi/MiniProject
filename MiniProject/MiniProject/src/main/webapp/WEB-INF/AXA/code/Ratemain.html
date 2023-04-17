@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Compound Interest Calculator</title>
+	<style>
+		input, button {
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Compound Interest Calculator & Fulfillment Rate</h1>
+	<input type="number" id="initialAmount" placeholder="Enter initial amount">
+	<input type="number" id="interestRate" placeholder="Enter annual interest rate (%)">
+	<input type="number" id="years" placeholder="Enter number od years">
+	<input type="number" id="contribution" placeholder="Enter regular contribution">
+	<input type="number" id="desiredAmount" placeholder="Enter desired amount">
+	<button onclick="calculate()">Calculate</button>
+	<div id="result"></div>
+	
+	<script>
+		function calculate() {
+			const initialAmount = parseFloat(document.getElementById("initialAmount").value);
+	        const interestRate = parseFloat(document.getElementById("interestRate").value) / 100;
+	        const years = parseFloat(document.getElementById("years").value);
+	        const contribution = parseFloat(document.getElementById("contribution").value);
+	        const desiredAmount = parseFloat(document.getElementById("desiredAmount").value);
+	        
+	        const n = 12;
+	        const ratePerPeriod = interestRate / n;
+	        const totalPeriods = years * n;
+	        
+	        const futureValue = initialAmount * Math.pow(1 + ratePerPeriod, totalPeriods) + (contribution * (Math.pow(1 + ratePerPeriod, totalPeriods) -1) / ratePerPeiod);
+	        const fulfillmenRate = futureValue / desiredAmount * 100;
+	        
+	        document.getElementByld("result").innerHTML = 
+	        	`<p>Future value: ${futureValue.toFixed(2)}</p><p>Fulfillmentrate: ${fulfillmentRate.toFixed(2)}%</p>`;
+		} 
+	</script>
+
+</body>
+</html>
