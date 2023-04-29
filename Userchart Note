@@ -1,0 +1,61 @@
+$(document).ready(function () {
+    function addItem(inputId, buttonId, listId) {
+        // Add item to list on button click
+        $("#" + buttonId).click(function () {
+            const itemText = $("#" + inputId).val();
+
+            if (itemText.trim()) {
+                const listItem = $("<li>").text(itemText);
+                $("<button>")
+                    .text("Remove")
+                    .click(function () {
+                        $(this).parent().remove();
+                    })
+                    .appendTo(listItem);
+
+                $("#" + listId).append(listItem);
+                $("#" + inputId).val("");
+            }
+        });
+
+        // Add item to list on pressing Enter key
+        $("#" + inputId).keypress(function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                $("#" + buttonId).click();
+            }
+        });
+    }
+
+
+
+
+addItem는 inputId, buttonId, listId 세 가지 인수를 취한다. 다음은 코드 작동 방식에 대한 설명입니다.
+
+1. 이 $(document).ready()함수는 전체 HTML 문서가 로드되고 조작할 준비가 된 후에만 내부 코드가 실행되도록 합니다.
+
+2. 이 함수는 , 및 addItem의 세 가지 매개변수로 정의됩니다 . 
+이러한 매개변수는 입력 필드(사용자가 항목 텍스트를 입력하는 곳), 항목을 추가하는 버튼 및 항목이 표시될 목록에 대한 HTML 요소 ID를 각각 나타냅니다.
+inputId / buttonId  / listId
+
+3. 함수 내에서 addItem메서드를 사용하여 버튼에 이벤트 리스너가 추가됩니다 click. 버튼을 클릭하면 메서드 내부의 함수가 click실행됩니다.
+
+4. 변수 itemText는 입력 필드의 값으로 설정됩니다. 이 trim()메서드는 입력 값의 시작과 끝에서 공백을 제거하는 데 사용됩니다.
+
+5. (즉, 공백이 아닌 문자가 하나 이상 포함되어 있는지) if확인합니다 . itemText비어 있지 않으면 if명령문 내부의 코드가 실행됩니다.
+
+6. text().구문을 사용하여 새로운 목록 항목( <li>)을 생성 $("<li>")하고 메소드를 itemText사용하여 내용을 설정합니다.
+
+7. "Remove" 텍스트가 있는 새 버튼이 생성되고 메서드를 사용하여 이벤트 리스너가 추가됩니다 
+'click.' "제거" 버튼을 클릭하면 메서드 내부의 함수가 click실행되어 부모 <li>요소(즉, 전체 목록 항목)가 제거됩니다.
+
+8. 메서드 를 사용하여 "제거" 버튼이 목록 항목에 추가됩니다 appendTo().
+
+9. 목록 항목은 메서드를 listId사용하여 목록( 으로 지정) 에 추가됩니다 append().
+
+10. 값을 빈 문자열로 설정하면 입력 필드가 지워집니다.
+
+11. 추가 이벤트 리스너가 입력 필드에 추가되어 이벤트를 수신합니다.
+keypress. 이벤트의 which속성이 13(Enter 키를 나타냄)이면 를 사용하여 이벤트의 기본 동작이 방지되고 e.preventDefault()버튼의 click이벤트가 프로그래밍 방식으로 트리거됩니다.
+
+함수 addItem는 적절한 요소 ID로 호출되어 웹 페이지에서 원하는 할 일 목록 기능을 생성할 수 있습니다.
